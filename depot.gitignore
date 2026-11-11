@@ -1,0 +1,19 @@
+# Dépendances Node.js
+node_modules/
+
+# Base de données locale
+*.sqlite
+*.sqlite-journal
+database.sqlite
+
+# Fichiers de sauvegarde locaux
+*.json
+!package.json
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Fichiers d'éditeur
+.vscode/
+.idea/

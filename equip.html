@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BME_TECH - Équipements</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="equip.css">
+    <link rel="stylesheet" href="light-mode.css">
+</head>
+<body>
+    
+    <!-- Bouton Menu Mobile (Hamburger) -->
+    <button id="mobile-menu-btn" class="mobile-menu-btn">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <!-- Fond semi-transparent -->
+    <div id="mobile-overlay" class="mobile-overlay"></div>
+
+    <!-- BARRE LATÉRALE (SIDEBAR) -->
+    <aside class="sidebar" id="sidebar">
+        <!-- Bouton Fermer (Croix) pour mobile -->
+        <button id="close-menu-btn" class="close-menu-btn">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="sidebar-header">
+            <img src="img3.png" alt="Logo BME" class="sidebar-logo">
+            <div class="sidebar-text">
+                <h2>BME Technologie</h2>
+                <p>PERFORMANCE ET RAPIDITÉ</p>
+            </div>
+        </div>
+
+        <ul class="menu">
+            <li><a href="dash.html"><i class="fa-solid fa-border-all"></i> TABLEAU DE BORD</a></li>
+            <li><a href="repar.html"><i class="fa-solid fa-screwdriver-wrench"></i> RÉPARATION</a></li>
+            <li class="active"><a href="equip.html"><i class="fa-solid fa-bolt"></i> ÉQUIPEMENTS</a></li>
+            <li><a href="vente.html"><i class="fa-solid fa-cash-register"></i> VENTES</a></li>
+        </ul>
+
+        <div class="sidebar-footer">
+            <a href="para.html"><i class="fa-solid fa-gear"></i> PARAMÈTRES</a>
+        </div>
+    </aside>
+
+    <!-- CONTENU PRINCIPAL -->
+    <main class="contenu">
+        <header class="main-header">
+            <h2><i class="fa-solid fa-bolt"></i> BME Technologie - Gestion</h2>
+            <h4>Enregistrement des équipements dédiés à la vente</h4>
+        </header>
+
+        <!-- FORMULAIRE ÉQUIPEMENT -->
+        <section class="form-section">
+            <h2><i class="fa-solid fa-square-plus"></i> Nouvel Équipement</h2> 
+            <form id="formProduit">
+                <div class="form-card">
+                    <div class="form-group">
+                        <label for="produit">Nom Équipement</label>
+                        <input type="text" id="produit" required placeholder="Ex: Vibreur M-300">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="marque">Marque</label>
+                        <input type="text" id="marque" required placeholder="Ex: Bosch">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="reference">Référence</label>
+                        <input type="text" id="reference" required placeholder="Ex: m-300">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quantite">Quantité</label>
+                        <input type="number" id="quantite" required min="1" value="1">
+                    </div>
+
+                    <button type="submit" class="btn-add">
+                        <i class="fa-solid fa-floppy-disk"></i> ENREGISTRER
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- SECTION INVENTAIRE ACTUEL -->
+        <section class="table-section">
+            <div class="table-header-flex">
+                <h2><i class="fa-solid fa-clipboard-list"></i> Inventaire Actuel</h2>
+                
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="search" id="searchInput" placeholder="Rechercher...">
+                </div>
+            </div>
+
+            <div class="table-card">
+                <div class="table-container">
+                    <table id="tableEquip" class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Nom Équipement</th>
+                                <th>Marque</th>
+                                <th>Référence</th>
+                                <th>Date Dépôt</th>
+                                <th>Quantité</th>
+                                <th class="text-center" style="width: 100px;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody">
+                            <!-- Injection dynamique JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        <div id="toast-container" class="toast-container"></div>
+    </main>
+
+    <script src="equip.js"></script>
+</body>
+</html>

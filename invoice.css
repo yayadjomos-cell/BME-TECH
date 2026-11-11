@@ -1,0 +1,200 @@
+/* --- OVERLAY MODAL --- */
+.invoice-modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+  overflow-y: auto;
+  padding: 40px 20px;
+}
+
+.invoice-modal-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.invoice-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.btn-print {
+  background-color: #3b82f6;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn-close {
+  background-color: #ef4444;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* --- DOCUMENT FACTURE (A4 BLANC) --- */
+.invoice-document {
+  background-color: #ffffff;
+  color: #1e293b;
+  padding: 40px;
+  border-radius: 4px;
+  font-family: 'Inter', system-ui, sans-serif;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.invoice-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.company-details h1 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+  color: #0f172a;
+}
+
+.company-details p {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin: 2px 0;
+}
+
+.invoice-meta {
+  text-align: right;
+}
+
+.invoice-meta h2 {
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  color: #0f172a;
+}
+
+.meta-table {
+  border-collapse: collapse;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+.meta-table td {
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  border: 1px solid #e2e8f0;
+}
+
+.invoice-divider {
+  border: none;
+  border-top: 2px solid #e2e8f0;
+  margin: 20px 0;
+}
+
+/* BLOC CLIENT */
+.client-card {
+  background-color: #f8fafc;
+  border-radius: 6px;
+  padding: 16px;
+  margin-bottom: 30px;
+}
+
+.client-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #64748b;
+  letter-spacing: 0.5px;
+}
+
+.client-card h3 {
+  font-size: 1rem;
+  margin: 6px 0 4px 0;
+  color: #0f172a;
+}
+
+.client-card p {
+  font-size: 0.85rem;
+  color: #475569;
+  margin: 2px 0;
+}
+
+/* TABLEAU PRESTATIONS */
+.invoice-items-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 30px;
+}
+
+.invoice-items-table th {
+  background-color: #f1f5f9;
+  color: #334155;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  padding: 10px;
+  border-bottom: 1px solid #cbd5e1;
+}
+
+.invoice-items-table td {
+  padding: 12px 10px;
+  font-size: 0.85rem;
+  border-bottom: 1px solid #e2e8f0;
+  color: #334155;
+}
+
+.text-right { text-align: right; }
+.text-center { text-align: center; }
+
+/* TOTALS */
+.invoice-totals-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.totals-table {
+  width: 280px;
+  border-collapse: collapse;
+}
+
+.totals-table td {
+  padding: 6px 0;
+  font-size: 0.85rem;
+  color: #475569;
+}
+
+.totals-table tr.total-row td {
+  border-top: 2px solid #0f172a;
+  padding-top: 10px;
+  font-size: 1.05rem;
+  color: #0f172a;
+}
+
+/* --- REGLES D'IMPRESSION (SEUL LE DOCUMENT EST IMPRIMÉ) --- */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .no-print {
+    display: none !important;
+  }
+  #invoiceModal, #invoiceDocument, #invoiceDocument * {
+    visibility: visible;
+  }
+  #invoiceModal {
+    position: absolute;
+    left: 0; top: 0; width: 100%;
+    background: none;
+    padding: 0;
+  }
+  .invoice-document {
+    box-shadow: none;
+    padding: 0;
+  }
+}

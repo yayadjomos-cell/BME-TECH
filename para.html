@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BME_TECH - Paramètres</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="para.css">
+    <link rel="stylesheet" href="light-mode.css">
+</head>
+<body>
+    
+    <button id="mobile-menu-btn" class="mobile-menu-btn">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <div id="mobile-overlay" class="mobile-overlay"></div>
+
+    <aside class="sidebar" id="sidebar">
+        <button id="close-menu-btn" class="close-menu-btn">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="sidebar-header">
+            <img src="img3.png" alt="Logo BME" class="sidebar-logo">
+            <div class="sidebar-text">
+                <h2>BME Technologie</h2>
+                <p>PERFORMANCE ET RAPIDITÉ</p>
+            </div>
+        </div>
+
+        <ul class="menu">
+            <li><a href="dash.html"><i class="fa-solid fa-border-all"></i> TABLEAU DE BORD</a></li>
+            <li><a href="repar.html"><i class="fa-solid fa-screwdriver-wrench"></i> RÉPARATION</a></li>
+            <li><a href="equip.html"><i class="fa-solid fa-bolt"></i> ÉQUIPEMENTS</a></li>
+            <li><a href="vente.html"><i class="fa-solid fa-cash-register"></i> VENTES</a></li>
+        </ul>
+
+        <div class="sidebar-footer">
+            <a href="para.html" class="active" style="color: #38bdf8;"><i class="fa-solid fa-gear"></i> PARAMÈTRES</a>
+        </div>
+    </aside>
+
+    <main class="contenu">
+        <header class="main-header">
+            <h2><i class="fa-solid fa-gear"></i> BME Technologie - Paramètres</h2>
+            <h4>Configuration de l'application</h4>
+        </header>
+
+        <section>
+            <div class="settings-grid">
+                <div class="settings-card">
+                    <div class="card-header">
+                        <i class="fa-solid fa-moon"></i>
+                        <h3>Apparence</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <span class="setting-title">THÈME DE L'INTERFACE</span>
+                                <span class="setting-desc">Mode Clair / Mode Sombre</span>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="themeToggle" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARTE 2 : SAUVEGARDE -->
+                <div class="settings-card">
+                    <div class="card-header">
+                        <i class="fa-solid fa-database"></i>
+                        <h3>Sauvegarde</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            Exporter et sauvegarder la base de données SQLite sur un support externe (Clé USB, Disque dur externe).
+                        </p>
+                        <button type="button" id="btnBackup" class="btn-primary-full">
+                            <i class="fa-solid fa-floppy-disk"></i> SAUVEGARDER LES DONNÉES
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODALE DE NOTIFICATION (SUCCÈS) -->
+        <div id="modalNotif" class="modal-overlay" onclick="fermerNotif(event)">
+          <div class="modal-content notif-content" onclick="event.stopPropagation()">
+            <div class="notif-icon">
+              <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h3>Sauvegarde réussie !</h3>
+            <p id="notif-message">La sauvegarde des données a été générée avec succès !</p>
+            <button type="button" class="btn-primary-full" onclick="fermerNotif(event)" style="margin-top: 20px;">Fermer</button>
+          </div>
+        </div>
+    </main>
+
+    <script src="para.js"></script>
+</body>
+</html>

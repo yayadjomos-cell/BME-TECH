@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BME_TECH - Tableau de bord</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="dash.css">
+  <link rel="stylesheet" href="light-mode.css">
+</head>
+<body>
+
+  <!-- Bouton Menu Mobile (Hamburger) -->
+  <button id="mobile-menu-btn" class="mobile-menu-btn">
+    <i class="fa-solid fa-bars"></i>
+  </button>
+
+  <!-- Fond semi-transparent -->
+  <div id="mobile-overlay" class="mobile-overlay"></div>
+
+  <!-- BARRE LATÉRALE (SIDEBAR) -->
+  <aside class="sidebar" id="sidebar">
+    
+    <!-- NOUVEAU : Bouton Fermer (Croix) pour mobile -->
+    <button id="close-menu-btn" class="close-menu-btn">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <div class="sidebar-header">
+      <img src="img3.png" alt="Logo BME" class="sidebar-logo">
+      <div class="sidebar-text">
+        <h2>BME Technologie</h2>
+        <p>PERFORMANCE ET RAPIDITÉ</p>
+      </div>
+    </div>
+
+    <ul class="menu">
+      <li class="active">
+        <a href="dash.html"><i class="fa-solid fa-border-all"></i> TABLEAU DE BORD</a>
+      </li>
+      <li>
+        <a href="repar.html"><i class="fa-solid fa-screwdriver-wrench"></i> RÉPARATION</a>
+      </li>
+      <li>
+        <a href="equip.html"><i class="fa-solid fa-bolt"></i> ÉQUIPEMENTS</a>
+      </li>
+      <li>
+        <a href="vente.html"><i class="fa-solid fa-cash-register"></i> VENTES</a>
+      </li>
+    </ul>
+
+    <div class="sidebar-footer">
+      <a href="para.html"><i class="fa-solid fa-gear"></i> PARAMÈTRES</a>
+    </div>
+  </aside>
+
+  <!-- CONTENU PRINCIPAL -->
+  <main class="contenu">
+    <header class="main-header">
+      <h2>BME Technologie - Gestion</h2>
+      <h4>Aperçu des performances et opérations en cours de l'entreprise</h4>
+    </header>
+
+    <section class="cards-grid">
+  <a href="#" class="pop1 kpi-card" id="kpi-reparations" onclick="ouvrirModalKPI('encours'); return false;">
+    <div class="info">
+      <p class="title">EN COURS DE RÉPARATION</p>
+      <div class="value-container">
+        <span class="value" id="val-reparations">0</span>
+        <span class="badge blue"><i class="fa-solid fa-circle"></i> unités</span>
+      </div>
+    </div>
+  </a>
+
+  <a href="#" class="pop2 kpi-card" id="kpi-pret" onclick="ouvrirModalKPI('pret'); return false;">
+    <div class="info">
+      <p class="title">PRÊT À ÊTRE LIVRÉ</p>
+      <div class="value-container">
+        <span class="value" id="val-pret">0</span>
+        <span class="badge green"><i class="fa-solid fa-circle"></i> unités</span>
+      </div>
+    </div>
+  </a>
+
+  <a href="#" class="pop3 kpi-card" id="kpi-livre" onclick="ouvrirModalKPI('livre'); return false;">
+    <div class="info">
+      <p class="title">MOTEUR LIVRÉ (TOTAL)</p>
+      <div class="value-container">
+        <span class="value" id="val-livre">0</span>
+        <span class="badge blue"><i class="fa-solid fa-circle"></i> unités</span>
+      </div>
+    </div>
+  </a>
+
+  <a href="#" class="pop4 kpi-card active-card" id="kpi-ca">
+    <div class="info">
+      <p class="title">CHIFFRE D'AFFAIRES MENSUEL</p>
+      <div class="value-container">
+        <span class="value" id="val-ca">0</span>
+        <span class="currency">FCFA</span>
+      </div>
+    </div>
+  </a>
+
+  <a href="#" class="pop5 kpi-card" id="kpi-recu" onclick="ouvrirModalKPI('recu'); return false;">
+    <div class="info">
+      <p class="title">MOTEURS REÇUS (MENSUEL)</p>
+      <div class="value-container">
+        <span class="value" id="val-recu">0</span>
+        <span class="badge blue"><i class="fa-solid fa-circle"></i> unités</span>
+      </div>
+    </div>
+  </a>
+
+  <a href="#" class="pop6 kpi-card" id="kpi-ventes" onclick="ouvrirModalKPI('vendu'); return false;">
+    <div class="info">
+      <p class="title">TOTAL ÉQUIPEMENT VENDU</p>
+      <div class="value-container">
+        <span class="value" id="val-ventes">0</span>
+        <span class="badge gray"><i class="fa-solid fa-circle"></i> mensuel</span>
+      </div>
+    </div>
+  </a>
+</section>
+    <section class="charts-wrapper">
+      <div class="tabs">
+        <button class="tab-btn active">MOTEURS</button>
+        <button class="tab-btn">AUTRES ÉQUIPEMENTS</button>
+      </div>
+
+      <div class="charts-grid">
+        <div class="chart-card">
+          <div class="chart-header">
+            <h3>Top Équipements Vendus</h3>
+          </div>
+          <div class="chart-placeholder" style="position: relative; height: 260px; width: 100%;">
+            <canvas id="chart-top-equipements"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <div class="chart-header">
+            <h3>Ventes vs Demandes Réparation</h3>
+          </div>
+          <div class="chart-placeholder" style="position: relative; height: 260px; width: 100%;">
+            <canvas id="chart-ventes-reparations"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tables-grid">
+      <div class="table-card">
+        <h3>Comparaison CA</h3>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>MOIS</th>
+              <th>CA TOTAL (FCFA)</th>
+              <th>ÉVOL %</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-comparaison-ca"></tbody>
+        </table>
+      </div>
+
+      <div class="table-card">
+        <h3>Moteurs Réparés</h3>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>MOIS</th>
+              <th>TOTAL RÉPARÉ</th>
+              <th>ÉVOL %</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-moteurs-repares"></tbody>
+        </table>
+      </div>
+
+      <div class="table-card alert-card">
+        <h3 class="alert-title">
+          <i class="fa-solid fa-triangle-exclamation"></i> Alertes Stock (&le; 3)
+        </h3>
+        <ul class="alert-list" id="list-alertes-stock">
+          <li style="color: #8b949e; padding: 10px 0;">Aucune alerte pour le moment</li>
+        </ul>
+      </div>
+    </section>
+
+  <!-- MODALE POUR LES DÉTAILS DES KPI -->
+  <div id="modalKPI" class="modal-overlay" onclick="fermerModalKPI(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h3 id="modalKPI-titre">Détails</h3>
+        <button type="button" class="close-modal-btn" onclick="fermerModalKPI(event)">&times;</button>
+      </div>
+      <div class="modal-body">
+        <ul id="modalKPI-liste" class="kpi-detail-list">
+          <!-- Injection dynamique par JS -->
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="dash.js"></script>
+</body>
+</html>

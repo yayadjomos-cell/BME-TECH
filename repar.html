@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BME_TECH - Réparation</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="repar.css">
+  <link rel="stylesheet" href="light-mode.css">
+  <link rel="stylesheet" href="invoice.css">
+</head>
+<body>
+    
+  <!-- Bouton Menu Mobile (Hamburger) -->
+  <button id="mobile-menu-btn" class="mobile-menu-btn">
+    <i class="fa-solid fa-bars"></i>
+  </button>
+
+  <!-- Fond semi-transparent -->
+  <div id="mobile-overlay" class="mobile-overlay"></div>
+
+  <!-- BARRE LATÉRALE (SIDEBAR) -->
+  <aside class="sidebar" id="sidebar">
+    
+    <!-- NOUVEAU : Bouton Fermer (Croix) pour mobile -->
+    <button id="close-menu-btn" class="close-menu-btn">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <div class="sidebar-header">
+      <img src="img3.png" alt="Logo BME" class="sidebar-logo">
+      <div class="sidebar-text">
+        <h2>BME Technologie</h2>
+        <p>PERFORMANCE ET RAPIDITÉ</p>
+      </div>
+    </div>
+    
+    <ul class="menu">
+      <li><a href="dash.html"><i class="fa-solid fa-border-all"></i> TABLEAU DE BORD</a></li>
+      <li class="active"><a href="repar.html"><i class="fa-solid fa-screwdriver-wrench"></i> RÉPARATION</a></li>
+      <li><a href="equip.html"><i class="fa-solid fa-bolt"></i> ÉQUIPEMENTS</a></li>
+      <li><a href="vente.html"><i class="fa-solid fa-cash-register"></i> VENTES</a></li>
+    </ul>
+
+    <div class="sidebar-footer">
+      <a href="para.html"><i class="fa-solid fa-gear"></i> PARAMÈTRES</a>
+    </div>
+  </aside>
+
+  <!-- CONTENU PRINCIPAL -->
+  <main class="contenu">
+    <header class="main-header">
+      <h2><i class="fa-solid fa-screwdriver-wrench"></i> BME Technologie - Service Après-Vente</h2>
+      <h4>Enregistrement des Ordres de Réparation</h4>
+    </header>
+
+    <!-- FORMULAIRE DE RÉPARATION -->
+    <section class="form-section">
+      <h2><i class="fa-solid fa-square-plus"></i> Nouvel Ordre de Réparation</h2>
+      <form id="formReparation">
+        <div class="form-card">
+          <div class="form-group">
+            <label for="nomClientReparation">Nom Client</label>
+            <input type="text" id="nomClientReparation" required placeholder="Nom du client">
+          </div>
+
+          <div class="form-group">
+            <label for="telephoneReparation">Téléphone</label>
+            <input type="text" id="telephoneReparation" placeholder="Numéro de téléphone">
+          </div>
+
+          <div class="form-group">
+            <label for="appareilReparation">Équipement / Appareil</label>
+            <input type="text" id="appareilReparation" placeholder="Ex: Laptop Dell, Moteur électrique...">
+          </div>
+
+          <div class="form-group">
+            <label for="modeleReparation">Modèle</label>
+            <input type="text" id="modeleReparation" placeholder="Ex: XPS 13, M-200">
+          </div>
+
+          <div class="form-group">
+            <label for="panneReparation">Panne / Diagnostique</label>
+            <input type="text" id="panneReparation" placeholder="Ex: Court-circuit, Écran cassé">
+          </div>
+
+          <div class="form-group">
+            <label for="coutReparation">Prix Unitaire (FCFA)</label>
+            <input type="number" id="coutReparation" min="0" placeholder="Ex: 25000">
+          </div>
+
+          <div class="form-group">
+            <label for="quantiteReparation">Quantité</label>
+            <input type="number" id="quantiteReparation" value="1" min="1">
+          </div>
+
+          <div class="form-group">
+            <label for="dateReparation">Date Livraison</label>
+            <input type="date" id="dateReparation">
+          </div>
+        </div>
+
+        <!-- ZONE DES ÉQUIPEMENTS AJOUTÉS EN COURS -->
+        <div id="zoneReparationsAjoutees" style="display: none; background: rgba(255,255,255,0.05); padding: 12px; border-radius: 6px; border: 1px solid #30363d; margin-top: 15px;">
+          <label style="font-size: 0.85rem; color: #388bfd; font-weight: bold;">
+            <i class="fa-solid fa-list-check"></i> Équipements enregistrés pour ce client :
+          </label>
+          <ul id="listeReparationsEquipements" style="list-style: none; padding-left: 0; margin-top: 8px; font-size: 0.9rem;">
+            <!-- Injection dynamique JS -->
+          </ul>
+        </div>
+
+        <div class="btn-group-right" style="margin-top: 15px;">
+          <button type="button" class="btn btn-ajouter" id="btnAjouterEquipementReparation">
+            <i class="fa-solid fa-plus"></i> AJOUTER L'ÉQUIPEMENT
+          </button>
+
+          <button type="submit" class="btn btn-save" id="btnEnregistrer">
+            <i class="fa-solid fa-floppy-disk"></i> ENREGISTRER
+          </button>
+
+          <button type="button" id="btnFactureReparation" class="btn btn-invoice">
+            <i class="fa-solid fa-file-invoice"></i> FACTURE
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- TABLEAU HISTORIQUE DES RÉPARATIONS -->
+    <section class="table-section">
+      <div class="table-header-flex">
+        <h2><i class="fa-solid fa-clock-rotate-left"></i> Registre de Réparation</h2>
+        
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="search" id="searchReparation" placeholder="Rechercher...">
+        </div>
+      </div>
+
+      <div class="table-card">
+        <div class="table-container">
+          <table id="tableReparation" class="data-table">
+            <thead>
+              <tr>
+                <th>N° Ordre</th>
+                <th>Client / Tél</th>
+                <th>Équipement(s)</th>
+                <th class="text-center">Qté</th>
+                <th>Panne(s)</th>
+                <th>Prix (FCFA)</th>
+                <th>Date Livraison</th>
+                <th>Statut</th>
+                <th class="text-center" style="width: 120px;">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="tbodyReparation">
+              <!-- Injection dynamique JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+    <div id="toast-container" class="toast-container"></div>
+  </main>
+
+  <script src="repar.js"></script>
+</body>
+</html>
